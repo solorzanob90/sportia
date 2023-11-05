@@ -1,0 +1,104 @@
+{% extends 'public/index.html' %} {% block body %} {% if (detallesProducto and
+  cantidad) %} {% set urlprod = '/static/assets/img/' %}
+  <div class="card mb-4 container-md p-2" style="max-width: 500px">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img
+          src="{{ urlprod }}{{ detallesProducto.imagen }}"
+          class="img-fluid rounded-start"
+          id="imga"
+          width="400px"
+          height="400px"
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h4 class="card-title">
+            <strong> {{ detallesProducto.nombre }}</strong>
+          </h4>
+          <p class="card-text">{{ detallesProducto.descripcion }}.</p>
+          <label class="h4 card-title"
+            >Precio (unidad):
+            <p class="h5">${{ detallesProducto.precio }}</p></label
+          ><br />
+          <label class="h4 card-title"
+            >Cantidad elegida:
+            <p class="h5">{{ cantidad }}</p></label
+          >
+          <br /><br /><br />
+          <h3 class="text-center">
+            TOTAL: {{ detallesProducto.precio * cantidad }}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br /><br />
+  
+  <div class="container-sm">
+    <form
+      action="{{ url_for('guardarUsuario') }}"
+      method="POST"
+      class="mb-3"
+      autocomplete="on"
+    >
+      <input type="number" name="total" value="{{ detallesProducto.precio * cantidad }}" hidden />
+      <input type="number" name="idprod" value="{{ detallesProducto.id_producto }}" hidden />
+      <input type="number" name="cant" value="{{ cantidad }}" hidden />
+      <input type="number" name="stockactual" value="{{ detallesProducto.stock - cantidad }}" hidden />
+      <div class="form-floating mb-3">
+        <input type="number" name="cedula" class="form-control" min="9999999" max="9999999999" />
+        <label>Cedula</label>
+      </div>
+      <div class="form-floating mb-3">
+        
+        <input type="text" name="nombre" max="50" class="form-control" placeholder="Pepito"/>
+        <label>Nombre</label>
+      </div>
+  
+      <div class="form-floating mb-3">
+        
+        <input
+          type="text"
+          name="apellido"
+          max="50"
+          class="form-control"
+         
+         
+        />
+        <label>Apellido</label>
+      </div>
+  
+      <div class="form-floating mb-3">
+        
+        <input
+          type="tel"
+          name="telefono"
+          max="9999999999"
+          class="form-control"
+          
+          
+        />
+        <label>Teléfono</label>
+  
+      </div>
+      <div class="form-floating mb-3">
+        
+        <input
+          type="text"
+          name="direccion"
+          class="form-control"
+                 
+        />
+        <label>Direccion</label>
+      </div>
+      <div class="form-floating mb-3">
+        
+        <input type="email" name="email" class="form-control" />
+        <label class="form-label">E-mail</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Finalizar Compra</button>
+    </form>
+  </div>
+  {% endif %} {% endblock %}
+  
