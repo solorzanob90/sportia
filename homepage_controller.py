@@ -47,7 +47,7 @@ def registrarUsuario(cedula=0,nombre='',apellido='',telefono='',direccion='',ema
     sql = ("INSERT INTO cliente(cedula,nombre,apellido,telefono,direccion,email) VALUES (%s, %s, %s, %s, %s, %s)")
     venta = ("INSERT INTO ventas (id_pedido, cedula, total, estado) VALUES (%s, %s, %s, %s)")
     valoressql = (cedula,nombre,apellido,telefono,direccion,email)
-    valoresventa = (id_pedido,cedula,total,"pagado")
+    valoresventa = (id_pedido + random.randint(1,99),cedula,total,"pagado")
 
     query.execute(clienteRegPrv)
     clReg = query.fetchone()
