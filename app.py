@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect,url_for,jsonify
-from myfunctions import *
+from homepage_controller import *
 
 
 app = Flask(__name__,template_folder='template')
