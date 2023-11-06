@@ -33,7 +33,7 @@ def detalleprod(prod_id=''):
 #se usaran numero aleatorio
 #sin repetirse
 minimo=1
-maximo=999 #ULTRA IMPORTANTE DEJAR ESTO ASI CON ESTE VALOR, SI PONES 9999 o mas, deja de funcionar
+maximo=999 #ULTRA IMPORTANTE DEJAR ESTO ASI CON ESTE VALOR, SI PONES 9999 o mas, deja de funcionar y consume mucha memoria RAM
 numeros = list(range(minimo,maximo+1))
 random.shuffle(numeros)
 id_pedido = numeros.pop()
