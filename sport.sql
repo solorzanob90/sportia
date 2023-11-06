@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-11-2023 a las 01:51:32
+-- Tiempo de generación: 06-11-2023 a las 02:23:43
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sport`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `admins`
+--
+
+CREATE TABLE `admins` (
+  `id` int(11) NOT NULL,
+  `user` varchar(30) NOT NULL,
+  `pass` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `admins`
+--
+
+INSERT INTO `admins` (`id`, `user`, `pass`) VALUES
+(1, 'admin', '1234');
 
 -- --------------------------------------------------------
 
@@ -47,6 +66,7 @@ INSERT INTO `cliente` (`cedula`, `nombre`, `apellido`, `telefono`, `direccion`, 
 (1065569616, 'Heider', 'Orozco', '3116063021', 'mz 17 cas 3', 'xorozk@gmail.com'),
 (1065569618, 'Heider', 'Orozco', '3116063021', 'mz 17 cas 3', 'xorozk@gmail.com'),
 (1065620834, 'Carlos', 'Solorzano', '3043712935', 'Calle falsa', 'cabascarlosandres@gmail.com'),
+(1234567890, 'Nuevo', 'Cliente', '3216547895', 'safsadfa', 'asfasf@s.com'),
 (1234567899, 'SGSDFGSD', 'SDGSDGSD', '3216549878', 'DGDGSD', 'casha@gmail.com'),
 (1256938741, 'LUis', 'Orozco', '3116063021', 'mz 17 cas 3', 'xorozk@gmail.com'),
 (2147483647, 'Heider', 'Orozco', '3116063021', 'mz 17 cas 3', 'xorozk@gmail.com');
@@ -91,7 +111,8 @@ INSERT INTO `detalleventas` (`id_pedido`, `id_producto`, `cantidad`) VALUES
 (599419, 2, 1),
 (195865, 2, 1),
 (452715, 2, 1),
-(737035, 3, 1);
+(737035, 3, 1),
+(521, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -114,7 +135,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id_producto`, `nombre`, `descripcion`, `marca`, `precio`, `stock`, `imagen`) VALUES
-(1, 'Balon de futbol', 'Balon hecho con materiales organicos. Agradable al tacto', 'Adidas', 100000.00, 20, 'balón.png'),
+(1, 'Balon de futbol', 'Balon hecho con materiales organicos. Agradable al tacto', 'Adidas', 100000.00, 17, 'balón.png'),
 (2, 'Camiseta de Colombia', 'Camiseta talla M de la selección de futbol de Colombia', 'Adidas', 50000.00, 10, 'camCol.png'),
 (3, 'Guayos', 'Gayos de talla 42 para jugar futbol', 'Nike', 120000.00, 12, 'guayos.png'),
 (4, 'Pelota de Tennis', 'Pelota con un diseño ergonómico para jugar Tennis', 'Wilson', 25000.00, 70, 'pelota.png'),
@@ -141,6 +162,7 @@ CREATE TABLE `ventas` (
 --
 
 INSERT INTO `ventas` (`id_pedido`, `fecha`, `cedula`, `total`, `estado`) VALUES
+(521, '2023-11-05', 1234567890, 300000.00, 'pagado'),
 (51358, '2023-10-20', 1065569616, 50000.00, 'pagado'),
 (53706, '2023-10-20', 1234567899, 500000.00, 'pagado'),
 (114226, '2023-10-20', 1025689235, 50000.00, 'pagado'),
@@ -171,6 +193,12 @@ INSERT INTO `ventas` (`id_pedido`, `fecha`, `cedula`, `total`, `estado`) VALUES
 --
 
 --
+-- Indices de la tabla `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `cliente`
 --
 ALTER TABLE `cliente`
@@ -187,6 +215,16 @@ ALTER TABLE `productos`
 --
 ALTER TABLE `ventas`
   ADD PRIMARY KEY (`id_pedido`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
