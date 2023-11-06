@@ -73,7 +73,9 @@ def registrarUsuario(cedula=0,nombre='',apellido='',telefono='',direccion='',ema
         cc.close()
         resultado = query.rowcount
         return resultado
-    
+
+
+
 
 
 mypassemail="C#arles1990"
