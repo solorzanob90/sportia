@@ -31,9 +31,8 @@ def verificarusuario():
     if (username !="" and password !=""):
         resultado=verificaradmin(username)
 
-    if (resultado):
-        return render_template('public/paginaadmin.html')
-    else:print("credenciales incorrectas")
+        return render_template('public/paginaadmin.html', resultado=resultado)
+   
 
 
 @app.route('/login', methods=['GET', 'POST'])
