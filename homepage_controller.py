@@ -77,5 +77,3 @@ def registrarUsuario(cedula=0,nombre='',apellido='',telefono='',direccion='',ema
 
 
 
-
-mypassemail="C#arles1990"
