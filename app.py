@@ -3,7 +3,7 @@ from homepage_controller import *
 from flask_mail import Mail, Message
 import os
 from PIL import Image, ImageDraw, ImageFont
-
+from login import *
 
 app = Flask(__name__,template_folder='template')
 application = app
@@ -21,7 +21,25 @@ mail = Mail(app)
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+@app.route('/verificarusuario/', methods=['POST'])
+def verificarusuario():
+    if request.method=='POST':
+        username = request.form['username']
+        password = request.form['password']
+        resultado=verificaradmin(username, password)
 
+    if (resultado==True):
+        
+        return render_template('public/paginaadmin.html', resultado=resultado)
+    
+    else: 
+        print("Credenciales Incorrectas")
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+         
+    return render_template('public/login.html')
 
 
 @app.route('/', methods=['GET','POST'])
