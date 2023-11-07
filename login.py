@@ -3,16 +3,11 @@ from conectar import *
 
 app = Flask(__name__)   
 
-def verificaradmin(username):
+def verificaradmin(username, password):
 
         # Consulta para verificar las credenciales del usuario
-        cc=conexion()
-        cursor=cc.cursor(dictionary=True)
-        query = "SELECT user, pass FROM admins WHERE user = %s"
-        cursor.execute(query, (username,))
-        user = cursor.fetchone()
-
-        if user==username:
+       
+        if username=='admin' and password=='1234':
           print("accedió el admin")
 
           return True

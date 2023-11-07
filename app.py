@@ -26,13 +26,14 @@ def verificarusuario():
     if request.method=='POST':
         username = request.form['username']
         password = request.form['password']
+        resultado=verificaradmin(username, password)
 
-
-    if (username !="" and password !=""):
-        resultado=verificaradmin(username)
-
+    if (resultado==True):
+        
         return render_template('public/paginaadmin.html', resultado=resultado)
-   
+    
+    else: 
+        print("Credenciales Incorrectas")
 
 
 @app.route('/login', methods=['GET', 'POST'])
