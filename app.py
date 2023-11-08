@@ -4,6 +4,7 @@ from flask_mail import Mail, Message
 import os
 from PIL import Image, ImageDraw, ImageFont
 from login import *
+from crud_controller import *
 
 app = Flask(__name__,template_folder='template')
 application = app
@@ -28,7 +29,7 @@ def verificarusuario():
         password = request.form['password']
         resultado=verificaradmin(username, password)
 
-    if (resultado==True):
+    if (resultado):
         
         return render_template('public/paginaadmin.html', resultado=resultado)
     
@@ -148,9 +149,24 @@ def mostrarFrmCompra(prod_id):
              return render_template('public/index.html')
     return redirect(url_for('homepage')) 
     
-   
+   #___________________________________________CRUD DE PRODUCTOS_____________________________________________________
+
+msg  =''
+tipo =''
 
 
+#Creando mi decorador para el home, el cual retornara la Lista de Carros
+@app.route('/paginaadmin', methods=['GET','POST'])
+def inicioAdmin():
+    return render_template('public/listaProducto.html', miData = listaProductos())
+
+
+#RUTAS
+@app.route('/registrar-carro', methods=['GET','POST'])
+def addCarro():
+    return render_template('public/acciones/add.html')
+
+#_____________________________________________________________________________________________________________________
 #esto debe estar de ultimo y es necesario
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
