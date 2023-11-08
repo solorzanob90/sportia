@@ -37,6 +37,7 @@ def verificarusuario():
         print("Credenciales Incorrectas")
 
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
          
