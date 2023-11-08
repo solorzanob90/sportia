@@ -30,12 +30,12 @@ def verificarusuario():
         password = request.form['password']
         resultado=verificaradmin(username, password)
 
-    if (resultado):
+        if (resultado):
         
-        return render_template('public/paginaadmin.html', resultado=resultado)
+            return render_template('public/paginaadmin.html', resultado=resultado)
     
-    else: 
-        print("Credenciales Incorrectas")
+        else: 
+            print("Credenciales Incorrectas")
 
 
 
