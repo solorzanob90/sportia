@@ -101,20 +101,13 @@ def recibeFoto(file):
 
 
 
-def eliminarProducto(idProd='', nombre_imagen=''):
+def eliminarProducto(idProd):
         
-    con = conexion() #Hago instancia a mi conexion desde la funcion
+    con = conexion() 
     cur  = con.cursor(dictionary=True)
     
     cur.execute('DELETE FROM productos WHERE id_producto=%s', (idProd,))
     con.commit()
     resultado_eliminar = cur.rowcount #retorna 1 o 0
-    #print(resultado_eliminar)
-    
-    basepath = os.path.dirname (__file__) #C:\xampp\htdocs\localhost\Crud-con-FLASK-PYTHON-y-MySQL\app
-    url_File = os.path.join (basepath, 'static/assets/fotos_carros', nombre_imagen)
-    os.remove(url_File) #Borrar foto desde la carpeta
-    #os.unlink(url_File) #Otra forma de borrar archivos en una carpeta
-    
-
+   
     return resultado_eliminar
