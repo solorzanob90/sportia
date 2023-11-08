@@ -158,7 +158,7 @@ tipo =''
 #Creando mi decorador para el home, el cual retornara la Lista de Carros
 @app.route('/paginaadmin', methods=['GET','POST'])
 def inicioAdmin():
-    return render_template('public/listaProducto.html', miData = listaProductos())
+    return render_template('public/paginaadmin.html', resultado = listaProductos())
 
 
 #RUTAS
@@ -195,7 +195,7 @@ def formAddProducto():
             nuevoNombreFile = recibeFoto(file) #Llamado la funcion que procesa la imagen
             resultData = registrarProducto(nombre,descripcion, marca,precio,stock, nuevoNombreFile)
             if(resultData ==1):
-                return render_template('public/paginaadmin.html', miData = listaProductos(), msg='El Registro fue un éxito', tipo=1)
+                return render_template('public/paginaadmin.html', resultado = listaProductos(), msg='El Registro fue un éxito', tipo=1)
             else:
                 return render_template('public/paginaadmin.html', msg = 'Metodo HTTP incorrecto', tipo=1)   
         else:
@@ -232,10 +232,10 @@ def  formActualizarProducto(idProd):
             resultData = recibeActualizarProductos(nombre,descripcion, marca,precio,stock, fotoCarro, idProd)
 
         if(resultData ==1):
-            return render_template('public/paginaadmin.html', miData = listaProductos(), msg='Datos del carro actualizados', tipo=1)
+            return render_template('public/paginaadmin.html', resultado = listaProductos(), msg='Datos del carro actualizados', tipo=1)
         else:
             msg ='No se actualizo el registro'
-            return render_template('public/paginaadmin.html', miData = listaProductos(), msg='No se pudo actualizar', tipo=1)
+            return render_template('public/paginaadmin.html', resultado = listaProductos(), msg='No se pudo actualizar', tipo=1)
         
 @app.route('/borrar-producto', methods=['GET', 'POST'])
 def formViewBorrarProducto():
@@ -250,6 +250,15 @@ def formViewBorrarProducto():
             #return jsonify(["respuesta", 1])
         else: 
             return jsonify([0])
+        
+        
+@app.route('/paginaadmin/', methods=['POST'])
+def irAPaginaAdmin():
+    resultado=listaProductos()
+
+    if (resultado):
+        
+        return render_template('public/paginaadmin.html', resultado=resultado)
 
 #_____________________________________________________________________________________________________________________
 #esto debe estar de ultimo y es necesario
