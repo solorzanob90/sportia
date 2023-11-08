@@ -18,7 +18,23 @@
    
     <!-- Esto es un comentario de Didier-->
     <!--Cuerpo de la pagina-->
-  <header><h3 class="text-black-50 text-center container-md">SPORTIA: Tu tienda deportiva</h3></header>
+  <header>
+     <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h3 class="text-black-50 text-center container-md">SPORTIA: Tu tienda deportiva</h3>
+            </div>
+
+            <div class="col-md-3">
+                <button id="btn-abrir-ruta" class="btn btn-primary">Ingresar Usuario</button>
+            </div>
+            
+            
+        </div>
+        
+      </div>
+   </header>
+  
     <!--  <nav id="nav">
         <a href="/template/public/index.html"><img src="/static/assets/img/inicio.png" alt="" width="32" height="32"> </a> 
     </nav>-->
@@ -34,6 +50,10 @@
        
        </div>
     </div>
-
+    <script>
+        document.getElementById('btn-abrir-ruta').addEventListener('click', function() {
+            window.location.href = '/login'; // Redirige al usuario a la ruta deseada
+        });
+      </script>
 </body>
 </html>
