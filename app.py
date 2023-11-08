@@ -12,9 +12,9 @@ application = app
 #Configuracion del Correo Electronico
 app.config['MAIL_SERVER'] = 'smtp-mail.outlook.com'  # Servidor de correo saliente (SMTP)
 app.config['MAIL_PORT'] = 587  # Puerto SMTP
-app.config['MAIL_USE_TLS'] = True  # Usar TLS
+app.config['MAIL_USE_TLS'] = True  
 app.config['MAIL_USERNAME'] = 'cabascarlosandres@outlook.com'  # Tu dirección de correo electrónico
-app.config['MAIL_PASSWORD'] = mypassemail  # Tu contraseña
+app.config['MAIL_PASSWORD'] = "C#arles1990"
 
 mail = Mail(app)
 ########################################

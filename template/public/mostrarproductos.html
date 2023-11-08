@@ -3,7 +3,7 @@
 {% for p in datos %}
 {% with urlprod = '/static/assets/img/' %}
 
-  <div class="card border-primary mb-3" style="width: 15rem;">
+  <div class="card border-primary mb-3" style="width: 14rem;">
     <img src="{{ urlprod }}{{ p.imagen }}" class="card-img-top" alt="{{ p.nombre }}">
     <div class="card-body">
       <div>
@@ -16,9 +16,9 @@
           <h5 class="card-title">{{ p.precio }}</h5>
         </div>
       </div>
-      <p class="card-text">{{ p.descripcion }}</p>
+      <p class="card-text lead text-start">{{ p.descripcion }}</p>
       {% if p.stock > 0 %}
-        <a href="{{url_for('verDetalles',prod_id=p.id_producto)}}" class="btn btn-primary">Ver</a>
+        <a href="{{url_for('verDetalles',prod_id=p.id_producto)}}" class="btn btn-primary">Comprar</a>
         {% else %}
         <p class="h3 text-center text-danger"><strong>AGOTADO!</strong></p>
       {% endif %}
