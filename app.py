@@ -176,7 +176,7 @@ def viewDetalleCarro(idProd):
         if resultData:
             return render_template('public/vistaProducto.html', infoCarro = resultData, msg='Detalles del Producto', tipo=1)
         else:
-            return render_template('public/layout.html', msg='No existe el Carro', tipo=1)
+            return render_template('public/paginaadmin.html', msg='No existe el Carro', tipo=1)
     return redirect(url_for('inicio'))
 #_____________________________________________________________________________________________________________________
 #esto debe estar de ultimo y es necesario
