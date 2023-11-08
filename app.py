@@ -253,13 +253,26 @@ def formViewBorrarProducto():
             return jsonify([0])
         
         
-@app.route('/paginaadmin/', methods=['POST'])
+@app.route('/paginaadmin/', methods=['GET'])
 def irAPaginaAdmin():
-    resultado=listaProductos()
+    if request.method == 'POST':
+        resultado=listaProductos()
 
-    if (resultado):
+        if (resultado):
         
-        return render_template('public/paginaadmin.html', resultado=resultado)
+            return render_template('public/paginaadmin.html', resultado=resultado)
+
+
+@app.route('/paginaadmin/<int:idProd>', methods=['POST'])
+def deleteProducto(idProd):
+    if request.method == 'POST':
+        elimina = eliminarProducto(idProd)
+        resultado=listaProductos()
+        
+        if(elimina==1):
+            return render_template('public/paginaadmin.html',resultado=resultado)
+
+
 
 #_____________________________________________________________________________________________________________________
 #esto debe estar de ultimo y es necesario
