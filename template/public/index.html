@@ -39,13 +39,7 @@
 </head>
 <body class="animsition">
     
-    <!--Boostrap JS-->
-   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>-->
    
-    <!-- Esto es un comentario de Didier-->
-    <!--Cuerpo de la pagina-->
     <header>
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
@@ -53,24 +47,16 @@
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
 					<div class="left-top-bar">
-						Free shipping for standard order over $100
+						Consigue ropa deportiva a un comodo precio
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
 						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							Help & FAQs
+							Ayuda
 						</a>
 
 						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							My Account
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							EN
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							USD
+							LOGIN
 						</a>
 					</div>
 				</div>
@@ -81,39 +67,35 @@
 					
 					<!-- Logo desktop -->		
 					<a href="#" class="logo">
-						<img src="images/icons/logo-01.png" alt="IMG-LOGO">
+						<img src="{{ url_for('static', filename ='assets/images/icons/sportia.png') }}" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="active-menu">
-								<a href="index.html">Home</a>
-								<ul class="sub-menu">
-									<li><a href="index.html">Homepage 1</a></li>
-									<li><a href="home-02.html">Homepage 2</a></li>
-									<li><a href="home-03.html">Homepage 3</a></li>
-								</ul>
+								<a href="#">Home</a>
+								
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="#">Shop</a>
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
+								<a href="#">Features</a>
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
+								<a href="#">Blog</a>
 							</li>
 
 							<li>
-								<a href="about.html">About</a>
+								<a href="#">About</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="#">Contact</a>
 							</li>
 						</ul>
 					</div>	
@@ -140,7 +122,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="#"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -248,9 +230,7 @@
 			</div>
 		</div>
 	</header>
-    <!--  <nav id="nav">
-        <a href="/template/public/index.html"><img src="/static/assets/img/inicio.png" alt="" width="32" height="32"> </a> 
-    </nav>-->
+   
 
     <div class="wrap-header-cart js-panel-cart"> <!--CARRITO-->
 		<div class="s-full js-hide-cart"></div>
@@ -258,7 +238,7 @@
 		<div class="header-cart flex-col-l p-l-65 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
 				<span class="mtext-103 cl2">
-					Your Cart
+					Carrito
 				</span>
 
 				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
@@ -339,72 +319,72 @@
     <section class="section-slide"><!--SLIDER-->
 		<div class="wrap-slick1">
 			<div class="slick1">
-				<div class="item-slick1" style="background-image: url(assets/images/slide-01.jpg);">
+				<div class="item-slick1" style="background-image: url(/static/assets/images/slide-01.jpg);">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
 								<span class="ltext-101 cl2 respon2">
-									Women Collection 2018
+									Nuevos productos en venta
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
 								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-									NEW SEASON
+									NUEVOS ESTILOS
 								</h2>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-									Shop Now
+								<a href="#" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+									Comprar
 								</a>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="item-slick1" style="background-image: url(assets/images/slide-02.jpg);">
+				<div class="item-slick1" style="background-image: url(/static/assets/images/slide-02.jpg);">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
 								<span class="ltext-101 cl2 respon2">
-									Men New-Season
+									Balones para jugar futbol
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
 								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-									Jackets & Coats
+									Adidas
 								</h2>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-									Shop Now
+								<a href="#" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+									Comprar
 								</a>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="item-slick1" style="background-image: url(assets/images/slide-03.jpg);">
+				<div class="item-slick1" style="background-image: url(/static/assets/images/slide-03.jpg);">
 					<div class="container h-full">
 						<div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
-									Men Collection 2018
+								<span class="ltext-101 cl2 respon2 text-light">
+									Para hacer ejercicio en casa
 								</span>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
-								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-									New arrivals
+								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1 text-light ">
+									BICICLETAS ESTÁTICAS
 								</h2>
 							</div>
 								
 							<div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
-								<a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-									Shop Now
+								<a href="#" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+									Comprar ahora
 								</a>
 							</div>
 						</div>
@@ -414,19 +394,36 @@
 		</div>
 	</section>
 
+    <section class="bg0 p-t-23 p-b-140 p-lg-5 "> <!--Vista de productos en la pagina-->
+        <div class="container">
+            <div class="p-b-10">
+                <h3 class="ltext-103 cl5">
+                    Todo los productos
+                </h3>
+            </div>
 
-    <div class="container">
-        <div class="row">
-        
-   {% block body %}   
+            <div class="row isotope-grid">
+                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women"></div>
+                
+                {% block body %}   
 
-        {% include 'public/mostrarproductos.html' %}
+                    {% include 'public/mostrarproductos.html' %}
 
-    {% endblock %}
+                {% endblock %}
    
        
-       </div>
-    </div>
+            </div>
+        </div>
+   </section>
+
+
+  
+
+
+
+
+
+
     <script src="{{ url_for('static', filename ='assets/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
     <!--===============================================================================================-->
         <script src="{{ url_for('static', filename ='assets/vendor/animsition/js/animsition.min.js') }}"></script>
