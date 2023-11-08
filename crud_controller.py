@@ -1,5 +1,7 @@
 from random import sample
 from conectar import *  #Importando conexion BD
+import os
+from werkzeug.utils import secure_filename
 
 
 
@@ -46,7 +48,7 @@ def registrarProducto(nombre='', descripcion='', marca='', precio='', stock='', 
         return resultado_insert
   
 
-def detallesdelProductos(idProductos):
+def detallesdelProducto(idProductos):
         con = conexion()
         cursor = con.cursor(dictionary=True)
         
@@ -90,3 +92,38 @@ def stringAleatorio():
     resultado_aleatorio  = sample(secuencia, longitud)
     string_aleatorio     = "".join(resultado_aleatorio)
     return string_aleatorio
+
+def recibeFoto(file):
+    print(file)
+    basepath = os.path.dirname (__file__) #La ruta donde se encuentra el archivo actual
+    filename = secure_filename(file.filename) #Nombre original del archivo
+
+    #capturando extensión del archivo ejemplo: (.png, .jpg, .pdf ...etc)
+    extension           = os.path.splitext(filename)[1]
+    nuevoNombreFile     = stringAleatorio() + extension
+    #print(nuevoNombreFile)
+        
+    upload_path = os.path.join (basepath, 'static/assets/img', nuevoNombreFile) 
+    file.save(upload_path)
+
+    return nuevoNombreFile
+
+
+
+def eliminarProducto(idProd='', nombre_imagen=''):
+        
+    con = conexion() #Hago instancia a mi conexion desde la funcion
+    cur  = con.cursor(dictionary=True)
+    
+    cur.execute('DELETE FROM productos WHERE id=%s', (idProd,))
+    con.commit()
+    resultado_eliminar = cur.rowcount #retorna 1 o 0
+    #print(resultado_eliminar)
+    
+    basepath = os.path.dirname (__file__) #C:\xampp\htdocs\localhost\Crud-con-FLASK-PYTHON-y-MySQL\app
+    url_File = os.path.join (basepath, 'static/assets/fotos_carros', nombre_imagen)
+    os.remove(url_File) #Borrar foto desde la carpeta
+    #os.unlink(url_File) #Otra forma de borrar archivos en una carpeta
+    
+
+    return resultado_eliminar
