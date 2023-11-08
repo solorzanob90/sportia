@@ -26,7 +26,7 @@ def updateProductos(id=''):
         con = conexion()
         cursor = con.cursor(dictionary=True)
         
-        cursor.execute("SELECT * FROM productos WHERE id = %s LIMIT 1", [id])
+        cursor.execute("SELECT * FROM productos WHERE id_producto = %s LIMIT 1", [id])
         resultQueryData = cursor.fetchone() #Devolviendo solo 1 registro
         return resultQueryData
     
@@ -36,7 +36,7 @@ def registrarProducto(nombre='', descripcion='', marca='', precio='', stock='', 
         con = conexion()
         cursor           = con.cursor(dictionary=True)
             
-        sql         = ("INSERT INTO productos(nombre,descripcion, marca,precio,stock,imagen) VALUES (%s, %s, %s, %s, %s, %s, %s)")
+        sql         = ("INSERT INTO productos(nombre,descripcion, marca,precio,stock,imagen) VALUES (%s, %s, %s, %s, %s, %s)")
         valores     = (nombre,descripcion, marca,precio,stock,imagen)
         cursor.execute(sql, valores)
         con.commit()
@@ -52,7 +52,7 @@ def detallesdelProducto(idProductos):
         con = conexion()
         cursor = con.cursor(dictionary=True)
         
-        cursor.execute("SELECT * FROM productos WHERE id ='%s'" % (idProductos,))
+        cursor.execute("SELECT * FROM productos WHERE id_producto ='%s'" % (idProductos,))
         resultadoQuery = cursor.fetchone()
         cursor.close() #cerrando conexion de la consulta sql
         con.close() #cerrando conexion de la BD
@@ -115,7 +115,7 @@ def eliminarProducto(idProd='', nombre_imagen=''):
     con = conexion() #Hago instancia a mi conexion desde la funcion
     cur  = con.cursor(dictionary=True)
     
-    cur.execute('DELETE FROM productos WHERE id=%s', (idProd,))
+    cur.execute('DELETE FROM productos WHERE id_producto=%s', (idProd,))
     con.commit()
     resultado_eliminar = cur.rowcount #retorna 1 o 0
     #print(resultado_eliminar)
