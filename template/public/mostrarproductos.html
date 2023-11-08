@@ -5,8 +5,13 @@
 
   <div class="block2">
     <div class="block2-pic hov-img0">
+<<<<<<< HEAD
       <div class="card border-dark m-r-18 m-l-18 m-t-18 m-b-18" style="width: 14rem;">
         <img src="{{ urlprod }}{{ p.imagen }}" class="card-img-top" alt="{{ p.nombre }}">
+=======
+      <div class="card m-r-15 m-l-15 m-t-15 m-b-15" style="width: 14rem;">
+        <img src="{{ urlprod }}{{ p.imagen }}" width="100px" height="170px" class="card-img-top" alt="{{ p.nombre }}">
+>>>>>>> 01fa97ee32a6f86a938494fd8c81608a097b96a5
         <div class="card-body">
           <div>
             <div class="row">
@@ -18,7 +23,7 @@
               <h5 class="card-title h3">${{ p.precio }}</h5>
             </div>
           </div>
-          <p class="card-text h5">{{ p.descripcion }}</p>
+          <!--<p class="card-text h5">{{ p.descripcion }}</p>-->
           {% if p.stock > 0 %}
             <a href="{{url_for('verDetalles',prod_id=p.id_producto)}}" class="btn btn-primary">Comprar</a>
             {% else %}

@@ -97,17 +97,17 @@ def guardarUsuario():
         tipoDeLetra = ImageFont.load_default()
 
         #datos del usuario que se imprimiran en la imagen
-        crearImgFactura.text((10,10), f'DETALLE DE COMPRA',font=ImageFont.truetype("ARLRDBD.TTF",14),fill=(0,0,0),align='left',spacing=4)
-        crearImgFactura.text((250,10), f'N. Factura: {id_pedido}',font=ImageFont.truetype("ARLRDBD.TTF",12),fill=(0,0,0),align='left',spacing=4)
+        crearImgFactura.text((10,10), f'DETALLE DE COMPRA',font=tipoDeLetra,fill=(0,0,0),align='left',spacing=4)
+        crearImgFactura.text((250,10), f'N. Factura: {id_pedido}',font=tipoDeLetra,fill=(0,0,0),align='left',spacing=4)
 
-        crearImgFactura.text((10,50), f'Nombre: {nombre}',font=ImageFont.truetype("Roboto-Regular.ttf",12),fill=(0,0,0),align='left',spacing=4)
-        crearImgFactura.text((10,70), f'Apellido: {apellido}',font=ImageFont.truetype("Roboto-Regular.ttf",12),fill=(0,0,0),align='left',spacing=4)
-        crearImgFactura.text((10,90), f'Domicilio: {direccion}',font=ImageFont.truetype("Roboto-Regular.ttf",12),fill=(0,0,0),align='left',spacing=4)
+        crearImgFactura.text((10,50), f'Nombre: {nombre}',font=tipoDeLetra,fill=(0,0,0),align='left',spacing=4)
+        crearImgFactura.text((10,70), f'Apellido: {apellido}',font=tipoDeLetra,fill=(0,0,0),align='left',spacing=4)
+        crearImgFactura.text((10,90), f'Domicilio: {direccion}',font=tipoDeLetra,fill=(0,0,0),align='left',spacing=4)
         crearImgFactura.text((10,120), f'---------------------------------------------------------------------------------------',font=tipoDeLetra,fill=(0,0,0),align='left',spacing=4)
        
-        crearImgFactura.text((15,150), f'TOTAL PAGO: {total}',font=ImageFont.truetype("ARLRDBD.TTF",20),fill=(0,0,0),align='left',spacing=4)
-        crearImgFactura.text((10,330), f'N. Guia: {random.randint(000000000000,999999999999)}',font=ImageFont.truetype("Roboto-Regular.ttf",18),fill=(0,0,0))
-        crearImgFactura.text((10,300), f'SPORTIA: Tu tienda Deportiva',font=ImageFont.truetype("unispace bd.ttf",14),fill=(0,0,0))
+        crearImgFactura.text((15,150), f'TOTAL PAGO: {total}',font=tipoDeLetra,fill=(0,0,0),align='left',spacing=4)
+        crearImgFactura.text((10,330), f'N. Guia: {random.randint(000000000000,999999999999)}',font=tipoDeLetra,fill=(0,0,0))
+        crearImgFactura.text((10,300), f'SPORTIA: Tu tienda Deportiva',font=tipoDeLetra,fill=(0,0,0))
 
 
         #creo la carpeta donde se guardara la imagen primero
