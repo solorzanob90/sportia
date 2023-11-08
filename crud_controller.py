@@ -112,7 +112,7 @@ def eliminarProducto(idProd='', nombre_imagen=''):
     #print(resultado_eliminar)
     
     basepath = os.path.dirname (__file__) #C:\xampp\htdocs\localhost\Crud-con-FLASK-PYTHON-y-MySQL\app
-    url_File = os.path.join (basepath, 'static/assets/fotos_carros', nombre_imagen)
+    url_File = os.path.join (basepath, 'static/assets/img', nombre_imagen)
     os.remove(url_File) #Borrar foto desde la carpeta
     #os.unlink(url_File) #Otra forma de borrar archivos en una carpeta
     
