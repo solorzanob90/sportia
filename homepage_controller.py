@@ -13,8 +13,7 @@ def showProductInPage():
     cur.execute(query)
 
     resultado = cur.fetchall()
-    totalresultado =len(resultado)
-
+    
     cur.close()
     cc.close()
 
@@ -77,5 +76,3 @@ def registrarUsuario(cedula=0,nombre='',apellido='',telefono='',direccion='',ema
 
 
 
-
-mypassemail="C#arles1990"

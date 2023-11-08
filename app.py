@@ -3,7 +3,8 @@ from homepage_controller import *
 from flask_mail import Mail, Message
 import os
 from PIL import Image, ImageDraw, ImageFont
-
+from login import *
+from crud_controller import *
 
 app = Flask(__name__,template_folder='template')
 application = app
@@ -11,9 +12,9 @@ application = app
 #Configuracion del Correo Electronico
 app.config['MAIL_SERVER'] = 'smtp-mail.outlook.com'  # Servidor de correo saliente (SMTP)
 app.config['MAIL_PORT'] = 587  # Puerto SMTP
-app.config['MAIL_USE_TLS'] = True  # Usar TLS
+app.config['MAIL_USE_TLS'] = True  
 app.config['MAIL_USERNAME'] = 'cabascarlosandres@outlook.com'  # Tu dirección de correo electrónico
-app.config['MAIL_PASSWORD'] = mypassemail  # Tu contraseña
+app.config['MAIL_PASSWORD'] = "C#arles1990"
 
 mail = Mail(app)
 ########################################
@@ -21,7 +22,25 @@ mail = Mail(app)
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+@app.route('/verificarusuario/', methods=['POST'])
+def verificarusuario():
+    if request.method=='POST':
+        username = request.form['username']
+        password = request.form['password']
+        resultado=verificaradmin(username, password)
 
+    if (resultado):
+        
+        return render_template('public/paginaadmin.html', resultado=resultado)
+    
+    else: 
+        print("Credenciales Incorrectas")
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+         
+    return render_template('public/login.html')
 
 
 @app.route('/', methods=['GET','POST'])
@@ -130,9 +149,24 @@ def mostrarFrmCompra(prod_id):
              return render_template('public/index.html')
     return redirect(url_for('homepage')) 
     
-   
+   #___________________________________________CRUD DE PRODUCTOS_____________________________________________________
+
+msg  =''
+tipo =''
 
 
+#Creando mi decorador para el home, el cual retornara la Lista de Carros
+@app.route('/paginaadmin', methods=['GET','POST'])
+def inicioAdmin():
+    return render_template('public/listaProducto.html', miData = listaProductos())
+
+
+#RUTAS
+@app.route('/registrar-carro', methods=['GET','POST'])
+def addCarro():
+    return render_template('public/acciones/add.html')
+
+#_____________________________________________________________________________________________________________________
 #esto debe estar de ultimo y es necesario
 if __name__ == "__main__":
     app.run(debug=True, port=8000)

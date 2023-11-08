@@ -1,6 +1,27 @@
 {% extends 'public/index.html' %} {% block body %} {% if (detallesProducto and
   cantidad) %} {% set urlprod = '/static/assets/img/' %}
-  <div class="card mb-4 container-md p-2" style="max-width: 500px">
+
+  <head>
+    <style>
+      .gradient-custom {
+  /* fallback for old browsers */
+  background: #115fcb;
+  
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgb(76, 71, 218), rgba(37, 117, 252, 1));
+  
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgb(17, 135, 203), rgba(37, 117, 252, 1))
+  }
+  </style>
+
+  </head>
+  <section class="gradient-custom">
+
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+  <div class="card mb-4 container-md p-2 bg-light " style="max-width: 500px">
     <div class="row g-0">
       <div class="col-md-4">
         <img
@@ -35,28 +56,30 @@
   </div>
   <br /><br />
   
+
   <div class="container-sm">
     <form
       action="{{ url_for('guardarUsuario') }}"
       method="POST"
-      class="mb-3"
+      class="mb-4 row g-3 needs-validation"
      
     >
       <input type="number" name="total" value="{{ detallesProducto.precio * cantidad }}" hidden />
       <input type="number" name="idprod" value="{{ detallesProducto.id_producto }}" hidden />
       <input type="number" name="cant" value="{{ cantidad }}" hidden />
       <input type="number" name="stockactual" value="{{ detallesProducto.stock - cantidad }}" hidden />
-      <div class="form-floating mb-3">
+      
+      <div class="form-floating mb-3 col-md-12">
         <input type="number" name="cedula" class="form-control" min="9999999" max="9999999999" required/>
-        <label>Cedula</label>
+        <label class="form-label ">Cedula</label>
       </div>
-      <div class="form-floating mb-3">
+      <div class="form-floating mb-3 col-md-5">
         
-        <input type="text" name="nombre" class="form-control" placeholder="Pepito" minlength="1" maxlength="50" required/>
-        <label>Nombre</label>
+        <input type="text" name="nombre" class="form-control" minlength="1" maxlength="50" required/>
+        <label class="form-label">Nombre</label>
       </div>
   
-      <div class="form-floating mb-3">
+      <div class="form-floating mb-3 col-md-5">
         
         <input
           type="text"
@@ -66,10 +89,10 @@
           required
          
         />
-        <label>Apellido</label>
+        <label class="form-label">Apellido</label>
       </div>
   
-      <div class="form-floating mb-3">
+      <div class="form-floating mb-3 col-md-5">
         
         <input
           type="tel"
@@ -77,10 +100,10 @@
           class="form-control"
           pattern="^\d{10}$"
         />
-        <label>Teléfono</label>
+        <label class="form-label">Teléfono</label>
   
       </div>
-      <div class="form-floating mb-3">
+      <div class="form-floating mb-3 col-md-5">
         
         <input
           type="text"
@@ -89,15 +112,22 @@
           pattern="^[A-Za-z0-9\s#\-]+$"   
           required
         />
-        <label>Direccion</label>
+        <label class="form-label">Direccion</label>
       </div>
-      <div class="form-floating mb-3">
+
+      <div class="form-floating mb-3 col-md-5">
         
         <input type="email" name="email" class="form-control" required/>
         <label class="form-label">E-mail</label>
       </div>
-      <button type="submit" class="btn btn-primary">Finalizar Compra</button>
+
+      <button type="submit" class="btn btn-success  ">Finalizar Compra</button>
     </form>
   </div>
+</div>
+</div>
+</div>
+
+</section>
   {% endif %} {% endblock %}
   
