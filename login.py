@@ -6,13 +6,12 @@ app = Flask(__name__)
 
 def verificaradmin(username, password):
 
-        # Consulta para verificar las credenciales del usuario
-       
-        if username=='admin' and password=='1234':
-          print("accedió el admin")
-          resultados = listaProductos()
-          return resultados
-          # return redirect(url_for('home'))
+    # Consulta para verificar las credenciales del usuario
+    if username=='admin' and password=='1234':
+        print("accedió el admin")
+        resultados = listaProductos()
+        return resultados
+        # return redirect(url_for('home'))
         
        
 
