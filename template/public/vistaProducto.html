@@ -1,0 +1,48 @@
+{% extends 'public/paginaadmin.html' %}
+{% block title %}Vista de Productos{% endblock %}
+
+{% block body %}
+
+
+<section>
+    <h2>
+        <a href="/paginaadmin" class="left" title="Volver"><i class="bi bi-arrow-left-circle"></i></a>
+        Detalles del Producto
+        <hr>
+    </h2>
+
+    {% if (infoProd) %}
+    
+
+    <div class="card" style="width: 25rem;">
+      {% set urlProd = '/static/assets/img/' %}
+        {% if(infoProd.imagen) %}
+          <img src="{{ urlProd }}{{ infoProd.imagen }}" class="card-img-top" alt="producto">
+        {% else %}
+          <img src="{{ urlProd }}imagen-vacia.jpg" class="card-img-top sin_foto" alt="producto">
+        {% endif %}
+
+        <div class="card-body">
+          <h5 class="card-title"> <strong>{{ infoProd.marca }}</strong></h5>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Nombre: <strong>{{ infoProd.nombre }}</strong></li>
+          <li class="list-group-item">Descripción: <strong>{{ infoProd.descripcion }}</strong></li>
+          <li class="list-group-item">Marca: <strong>{{ infoProd.marca }}</strong></li>
+          <li class="list-group-item">Precio: <strong>{{ infoProd.precio }}</strong></li>
+          <li class="list-group-item">Stock: <strong>{{ infoProd.stock }}</strong></li>
+        </ul>
+      </div>
+
+      {% else %}
+      <div class="col-12">
+          <h2 class="text-center">
+              No existe el producto
+          </h2>
+      </div>
+{% endif %}
+
+</section>
+
+{% endblock %}

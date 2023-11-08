@@ -1,5 +1,7 @@
 from random import sample
 from conectar import *  #Importando conexion BD
+import os
+from werkzeug.utils import secure_filename
 
 
 
@@ -24,7 +26,7 @@ def updateProductos(id=''):
         con = conexion()
         cursor = con.cursor(dictionary=True)
         
-        cursor.execute("SELECT * FROM productos WHERE id = %s LIMIT 1", [id])
+        cursor.execute("SELECT * FROM productos WHERE id_producto = %s", [id])
         resultQueryData = cursor.fetchone() #Devolviendo solo 1 registro
         return resultQueryData
     
@@ -34,7 +36,7 @@ def registrarProducto(nombre='', descripcion='', marca='', precio='', stock='', 
         con = conexion()
         cursor           = con.cursor(dictionary=True)
             
-        sql         = ("INSERT INTO productos(nombre,descripcion, marca,precio,stock,imagen) VALUES (%s, %s, %s, %s, %s, %s, %s)")
+        sql         = ("INSERT INTO productos(nombre,descripcion, marca,precio,stock,imagen) VALUES (%s, %s, %s, %s, %s, %s)")
         valores     = (nombre,descripcion, marca,precio,stock,imagen)
         cursor.execute(sql, valores)
         con.commit()
@@ -46,11 +48,11 @@ def registrarProducto(nombre='', descripcion='', marca='', precio='', stock='', 
         return resultado_insert
   
 
-def detallesdelProductos(idProductos):
+def detallesdelProducto(idProductos):
         con = conexion()
         cursor = con.cursor(dictionary=True)
         
-        cursor.execute("SELECT * FROM productos WHERE id ='%s'" % (idProductos,))
+        cursor.execute("SELECT * FROM productos WHERE id_producto ='%s'" % (idProductos,))
         resultadoQuery = cursor.fetchone()
         cursor.close() #cerrando conexion de la consulta sql
         con.close() #cerrando conexion de la BD
@@ -59,20 +61,11 @@ def detallesdelProductos(idProductos):
     
     
 
-def  recibeActualizarProductos(nombre,descripcion, marca,precio,stock,imagen, idPro):
+def  recibeActualizarProductos(nombre,descripcion, marca,precio,stock,imagen,idProd):
         con = conexion()
-        cur = con.cursor(dictionary=True)
-        cur.execute("""
-            UPDATE Productoss
-            SET 
-                nombre   = %s,
-                descripcion  = %s,
-                marca    = %s,
-                precio   = %s,
-                stock = %s,
-                imagen= %s,
-            WHERE id=%s
-            """, (nombre,descripcion, marca,precio,stock,imagen,  idPro))
+        cur = con.cursor(dictionary=True) 
+        qer =("UPDATE productos SET nombre   = %s,descripcion  = %s,marca    = %s,precio   = %s,stock = %s,imagen= %s WHERE id_producto=%s")
+        cur.execute(qer, (nombre,descripcion, marca,precio,stock,imagen, idProd))
         con.commit()
         
         cur.close() #cerrando conexion de la consulta sql
@@ -90,3 +83,42 @@ def stringAleatorio():
     resultado_aleatorio  = sample(secuencia, longitud)
     string_aleatorio     = "".join(resultado_aleatorio)
     return string_aleatorio
+
+def recibeFoto(file):
+    print(file)
+    basepath = os.path.dirname (__file__) #La ruta donde se encuentra el archivo actual
+    filename = secure_filename(file.filename) #Nombre original del archivo
+
+    #capturando extensión del archivo ejemplo: (.png, .jpg, .pdf ...etc)
+    extension           = os.path.splitext(filename)[1]
+    nuevoNombreFile     = stringAleatorio() + extension
+    #print(nuevoNombreFile)
+        
+    upload_path = os.path.join (basepath, 'static/assets/img', nuevoNombreFile) 
+    file.save(upload_path)
+
+    return nuevoNombreFile
+
+
+
+def eliminarProducto(idProd):
+        
+    con = conexion() 
+    cur  = con.cursor(dictionary=True)
+    
+    cur.execute('DELETE FROM productos WHERE id_producto=%s', (idProd,))
+    con.commit()
+    resultado_eliminar = cur.rowcount #retorna 1 o 0
+<<<<<<< HEAD
+    #print(resultado_eliminar)
+    
+    basepath = os.path.dirname (__file__) #C:\xampp\htdocs\localhost\Crud-con-FLASK-PYTHON-y-MySQL\app
+    url_File = os.path.join (basepath, 'static/assets/img', nombre_imagen)
+    os.remove(url_File) #Borrar foto desde la carpeta
+    #os.unlink(url_File) #Otra forma de borrar archivos en una carpeta
+    
+
+=======
+   
+>>>>>>> d0da116323f70f9b7201111579fb3735f35b3f24
+    return resultado_eliminar

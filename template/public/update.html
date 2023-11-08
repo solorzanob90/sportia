@@ -1,0 +1,78 @@
+{% extends 'public/paginaadmin.html' %}
+{% block title %}Actualizar Producto{% endblock %}
+
+{% block body %}
+
+
+<section>
+    <h2>
+        <a href="/paginaadmin" class="left" title="Volver"><i class="bi bi-arrow-left-circle"></i></a>
+        Actualizar Información del Producto
+        <hr>
+    </h2>
+
+    {% if (dataInfo) %}
+      <form action="{{ url_for('formActualizarProducto', idProd = dataInfo.id_producto ) }}" method="POST" class="mb-3" autocomplete="off" enctype="multipart/form-data">
+        <input type="text" class="form-control" name="id" value="{{ dataInfo.id_producto }}" required hidden>
+        
+        <div class="row">
+            <div class="col">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" value="{{ dataInfo.nombre }}" class="form-control">
+            </div>
+            <div class="col">
+                <label for="descripcion">Descripción</label>
+                <input type="text" name="descripcion" value="{{ dataInfo.descripcion }}" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="marca">Marca </label>
+                <input type="text" name="marca" value="{{ dataInfo.marca }}" class="form-control">
+            </div>
+
+            <div class="col">
+                <label for="precio">Precio </label>
+                <input type="number" name="precio" value="{{ dataInfo.precio }}" class="form-control">
+            </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="col">
+                <label for="stock">Stock </label>
+                <input type="number" name="stock" value="{{ dataInfo.stock }}" class="form-control">
+            </div>
+
+        </div>
+
+        <div class="row">
+            {% set urlProd = '/static/assets/img/' %}
+            <div class="col-md-6">
+                {% if(dataInfo.imagen !="") %}
+                        <img src="{{ urlProd }}{{ dataInfo.imagen }}" class="foto_update" alt="{{ dataInfo.marca }}">
+                    {% else %}
+                        <img src="{{ urlProd }}imagen-vacia.jpg" class="foto_update" alt="imagen">
+                {% endif %}
+            </div>º
+            <div class="col-md-6">
+                <label for="foto">Cambiar Foto del Producto</label>
+                <input type="file" name="imagen" class="form-control-file" accept="image/*">
+            </div>
+        </div>
+        <hr>
+        <input class="button-primary mt-3 btn btn-info btn-block bold" type="submit" value="Guardar Actualización">
+    </form>
+
+      {% else %}
+      <div class="col-12">
+          <h2 class="text-center">
+              No existe el producto
+          </h2>
+      </div>
+{% endif %}
+
+</section>
+
+{% endblock %}
