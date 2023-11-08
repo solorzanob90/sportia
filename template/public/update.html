@@ -1,19 +1,19 @@
-{% extends 'public/layout.html' %}
-{% block title %}Registrar Carro{% endblock %}
+{% extends 'public/paginaadmin.html' %}
+{% block title %}Actualizar Producto{% endblock %}
 
 {% block body %}
 
 
 <section>
     <h2>
-        <a href="/" class="left" title="Volver"><i class="bi bi-arrow-left-circle"></i></a>
-        Actualizar Información del Carro
+        <a href="/paginaadmin" class="left" title="Volver"><i class="bi bi-arrow-left-circle"></i></a>
+        Actualizar Información del Producto
         <hr>
     </h2>
 
     {% if (dataInfo) %}
       <form action="{{ url_for('formActualizarProducto', idProd = dataInfo.id_producto ) }}" method="POST" class="mb-3" autocomplete="off" enctype="multipart/form-data">
-        <input type="text" class="form-control" name="id" value="{{ dataInfo.id }}" required hidden>
+        <input type="text" class="form-control" name="id" value="{{ dataInfo.id_producto }}" required hidden>
         
         <div class="row">
             <div class="col">

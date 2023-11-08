@@ -208,9 +208,9 @@ def formViewUpdate(id):
         if resultData:
             return render_template('public/update.html',  dataInfo = resultData)
         else:
-            return render_template('public/paginaadmin.html', miData = listaProductos(), msg='No existe el carro', tipo= 1)
+            return render_template('public/paginaadmin.html', resultado = listaProductos(), msg='No existe el carro', tipo= 1)
     else:
-        return render_template('public/paginaadmin.html', miData = listaProductos(), msg = 'Metodo HTTP incorrecto', tipo=1)          
+        return render_template('public/paginaadmin.html', resultado = listaProductos(), msg = 'Metodo HTTP incorrecto', tipo=1)          
  
 
 @app.route('/actualizar-producto/<int:idProd>', methods=['POST'])
@@ -228,8 +228,8 @@ def  formActualizarProducto(idProd):
             fotoForm = recibeFoto(file)
             resultData = recibeActualizarProductos(nombre,descripcion, marca,precio,stock, fotoForm, idProd)
         else:
-            fotoCarro  ='imagen-vacia.jpg'
-            resultData = recibeActualizarProductos(nombre,descripcion, marca,precio,stock, fotoCarro, idProd)
+            fotoProd  ='imagen-vacia.jpg'
+            resultData = recibeActualizarProductos(nombre,descripcion, marca,precio,stock, fotoProd, idProd)
 
         if(resultData ==1):
             return render_template('public/paginaadmin.html', resultado = listaProductos(), msg='Datos del carro actualizados', tipo=1)
