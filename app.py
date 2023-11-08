@@ -3,8 +3,8 @@ from homepage_controller import *
 from flask_mail import Mail, Message
 import os
 from PIL import Image, ImageDraw, ImageFont
-from login import *
 from crud_controller import *
+from login import *
 
 app = Flask(__name__,template_folder='template')
 application = app
@@ -14,7 +14,7 @@ app.config['MAIL_SERVER'] = 'smtp-mail.outlook.com'  # Servidor de correo salien
 app.config['MAIL_PORT'] = 587  # Puerto SMTP
 app.config['MAIL_USE_TLS'] = True  # Usar TLS
 app.config['MAIL_USERNAME'] = 'cabascarlosandres@outlook.com'  # Tu dirección de correo electrónico
-app.config['MAIL_PASSWORD'] = mypassemail  # Tu contraseña
+app.config['MAIL_PASSWORD'] = "C#arles1990"  # Tu contraseña
 
 mail = Mail(app)
 ########################################
@@ -162,22 +162,95 @@ def inicioAdmin():
 
 
 #RUTAS
-@app.route('/registrar-carro', methods=['GET','POST'])
-def addCarro():
-    return render_template('public/acciones/add.html')
+@app.route('/registrar-producto', methods=['GET','POST'])
+def addProducto():
+    return render_template('public/addProducto.html')
 
 
 @app.route('/ver-detalles-del-producto/<int:idProd>', methods=['GET', 'POST'])
-def viewDetalleCarro(idProd):
+def viewDetalleProducto(idProd):
     msg =''
     if request.method == 'GET':
         resultData = detallesdelProducto(idProd) #Funcion que almacena los detalles del carro
         
         if resultData:
-            return render_template('public/vistaProducto.html', infoCarro = resultData, msg='Detalles del Producto', tipo=1)
+            return render_template('public/vistaProducto.html', infoProd = resultData, msg='Detalles del Producto', tipo=1)
         else:
-            return render_template('public/paginaadmin.html', msg='No existe el Carro', tipo=1)
+            return render_template('public/paginaadmin.html', msg='No existe el Producto', tipo=1)
     return redirect(url_for('inicio'))
+
+@app.route('/producto', methods=['POST'])
+def formAddProducto():
+    if request.method == 'POST':
+        nombre               = request.form['nombre']
+        descripcion          = request.form['descripcion']
+        marca                = request.form['marca']
+        precio               = request.form['precio']
+        stock                = request.form['stock']
+        
+        
+        
+        if(request.files['imagen'] !=''):
+            file     = request.files['imagen'] #recibiendo el archivo
+            nuevoNombreFile = recibeFoto(file) #Llamado la funcion que procesa la imagen
+            resultData = registrarProducto(nombre,descripcion, marca,precio,stock, nuevoNombreFile)
+            if(resultData ==1):
+                return render_template('public/paginaadmin.html', miData = listaProductos(), msg='El Registro fue un éxito', tipo=1)
+            else:
+                return render_template('public/paginaadmin.html', msg = 'Metodo HTTP incorrecto', tipo=1)   
+        else:
+            return render_template('public/paginaadmin.html', msg = 'Debe cargar una foto', tipo=1)
+        
+@app.route('/form-update-producto/<int:id>', methods=['GET','POST'])
+def formViewUpdate(id):
+    if request.method == 'GET':
+        resultData = updateProductos(id)
+        if resultData:
+            return render_template('public/update.html',  dataInfo = resultData)
+        else:
+            return render_template('public/paginaadmin.html', miData = listaProductos(), msg='No existe el carro', tipo= 1)
+    else:
+        return render_template('public/paginaadmin.html', miData = listaProductos(), msg = 'Metodo HTTP incorrecto', tipo=1)          
+ 
+
+@app.route('/actualizar-producto/<int:idProd>', methods=['POST'])
+def  formActualizarProducto(idProd):
+    if request.method == 'POST':
+        nombre               = request.form['nombre']
+        descripcion          = request.form['descripcion']
+        marca                = request.form['marca']
+        precio               = request.form['precio']
+        stock                = request.form['stock']
+        
+        #Script para recibir el archivo (foto)
+        if(request.files['imagen']):
+            file     = request.files['imagen']
+            fotoForm = recibeFoto(file)
+            resultData = recibeActualizarProductos(nombre,descripcion, marca,precio,stock, fotoForm, idProd)
+        else:
+            fotoCarro  ='imagen-vacia.jpg'
+            resultData = recibeActualizarProductos(nombre,descripcion, marca,precio,stock, fotoCarro, idProd)
+
+        if(resultData ==1):
+            return render_template('public/paginaadmin.html', miData = listaProductos(), msg='Datos del carro actualizados', tipo=1)
+        else:
+            msg ='No se actualizo el registro'
+            return render_template('public/paginaadmin.html', miData = listaProductos(), msg='No se pudo actualizar', tipo=1)
+        
+@app.route('/borrar-producto', methods=['GET', 'POST'])
+def formViewBorrarProducto():
+    if request.method == 'POST':
+        idProd         = request.form['id_producto']
+        nombre_imagen      = request.form['nombre_imagen']
+        resultData      = eliminarProducto(idProd, nombre_imagen)
+
+        if resultData ==1:
+            #Nota: retorno solo un json y no una vista para evitar refescar la vista
+            return jsonify([1])
+            #return jsonify(["respuesta", 1])
+        else: 
+            return jsonify([0])
+
 #_____________________________________________________________________________________________________________________
 #esto debe estar de ultimo y es necesario
 if __name__ == "__main__":

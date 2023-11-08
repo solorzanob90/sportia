@@ -1,4 +1,13 @@
-<!-- {{ miData }} -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestión de Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+   
 {% if (resultado) %}
 <div class="table-responsive">
     <table class="table table-bordered table-hover">
@@ -25,24 +34,24 @@
                 <td>{{ pro.stock }}</td>
                 <td>
                     {% if(pro.imagen !="") %}
-                    <img src="{{ urlProd }}{{ pro.imagen }}" class="sin_foto_mini" alt="{{ pro.marca }}">
+                    <img src="{{ urlProd }}{{ pro.imagen }}" width="64" height="64" class="sin_foto_mini" alt="{{ pro.marca }}">
                     {% else %}
                     <img src="{{ urlProd }}imagen-vacia.jpg" class="sin_foto_mini" alt="coche">
                     {% endif %}
                 </td>
                 <td width="300">
                    <span style="display: flex; justify-content:space-between;">
-                        <a href="{{ url_for('viewDetalleCarro', idProd = pro.id_producto ) }}" type="button"
+                        <a href="{{ url_for('viewDetalleProducto', idProd = pro.id_producto ) }}" type="button"
                             class="btn btn-warning btn-sm" tooltip="Ver Registro">
                             <i class="bi bi-eye"></i>
                             Ver
                         </a>
-                        <a href="{{ url_for('formViewUpdate', id = pro.id ) }}" class="btn btn-info btn-sm"
+                        <a href="{{ url_for('formViewUpdate', id = pro.id_producto ) }}" class="btn btn-info btn-sm"
                             tooltip="Actualizar Registro">
                             <i class="bi bi-arrow-clockwise"></i>
                             Actualizar
                         </a>
-                        <a href="#" id="id_{{ carro.id }}" data-foto="{{ carro.foto }}" onclick="eliminarCarroJavaScript('{{ carro.id }}');" class="btn btn-danger btn-sm"
+                        <a href="#" id="id_{{ pro.id_producto }}" data-foto="{{ pro.imagen }}" onclick="eliminarCarroJavaScript('{{ pro.id_producto }}');" class="btn btn-danger btn-sm"
                             tooltip="Eliminar Registro">
                             <i class="bi bi-trash3"></i>
                             Eliminar
@@ -61,4 +70,12 @@
         <h3 class="text-center">No hay Carros</h3>
     </div>
 </div>
-{% endif %}
+{% endif %} 
+
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename ='assets/js/alerta.js') }}"></script>
+<script src="{{ url_for('static', filename ='assets/js/loader.js') }}"></script>
+</body>
+</html>
