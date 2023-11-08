@@ -46,7 +46,7 @@ def registrarProducto(nombre='', descripcion='', marca='', precio='', stock='', 
         return resultado_insert
   
 
-def detallesdelProductos(idProductos):
+def detallesdelProducto(idProductos):
         con = conexion()
         cursor = con.cursor(dictionary=True)
         

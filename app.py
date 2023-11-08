@@ -12,9 +12,9 @@ application = app
 #Configuracion del Correo Electronico
 app.config['MAIL_SERVER'] = 'smtp-mail.outlook.com'  # Servidor de correo saliente (SMTP)
 app.config['MAIL_PORT'] = 587  # Puerto SMTP
-app.config['MAIL_USE_TLS'] = True  
+app.config['MAIL_USE_TLS'] = True  # Usar TLS
 app.config['MAIL_USERNAME'] = 'cabascarlosandres@outlook.com'  # Tu dirección de correo electrónico
-app.config['MAIL_PASSWORD'] = "C#arles1990"
+app.config['MAIL_PASSWORD'] = mypassemail  # Tu contraseña
 
 mail = Mail(app)
 ########################################
@@ -166,6 +166,18 @@ def inicioAdmin():
 def addCarro():
     return render_template('public/acciones/add.html')
 
+
+@app.route('/ver-detalles-del-producto/<int:idProd>', methods=['GET', 'POST'])
+def viewDetalleCarro(idProd):
+    msg =''
+    if request.method == 'GET':
+        resultData = detallesdelProducto(idProd) #Funcion que almacena los detalles del carro
+        
+        if resultData:
+            return render_template('public/vistaProducto.html', infoCarro = resultData, msg='Detalles del Producto', tipo=1)
+        else:
+            return render_template('public/layout.html', msg='No existe el Carro', tipo=1)
+    return redirect(url_for('inicio'))
 #_____________________________________________________________________________________________________________________
 #esto debe estar de ultimo y es necesario
 if __name__ == "__main__":
