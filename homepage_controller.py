@@ -13,8 +13,7 @@ def showProductInPage():
     cur.execute(query)
 
     resultado = cur.fetchall()
-    totalresultado =len(resultado)
-
+    
     cur.close()
     cc.close()
 
