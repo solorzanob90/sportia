@@ -26,7 +26,7 @@ def updateProductos(id=''):
         con = conexion()
         cursor = con.cursor(dictionary=True)
         
-        cursor.execute("SELECT * FROM productos WHERE id_producto = %s LIMIT 1", [id])
+        cursor.execute("SELECT * FROM productos WHERE id_producto = %s", [id])
         resultQueryData = cursor.fetchone() #Devolviendo solo 1 registro
         return resultQueryData
     
@@ -61,20 +61,11 @@ def detallesdelProducto(idProductos):
     
     
 
-def  recibeActualizarProductos(nombre,descripcion, marca,precio,stock,imagen, idPro):
+def  recibeActualizarProductos(nombre,descripcion, marca,precio,stock,imagen,idProd):
         con = conexion()
-        cur = con.cursor(dictionary=True)
-        cur.execute("""
-            UPDATE Productoss
-            SET 
-                nombre   = %s,
-                descripcion  = %s,
-                marca    = %s,
-                precio   = %s,
-                stock = %s,
-                imagen= %s,
-            WHERE id=%s
-            """, (nombre,descripcion, marca,precio,stock,imagen,  idPro))
+        cur = con.cursor(dictionary=True) 
+        qer =("UPDATE productos SET nombre   = %s,descripcion  = %s,marca    = %s,precio   = %s,stock = %s,imagen= %s WHERE id_producto=%s")
+        cur.execute(qer, (nombre,descripcion, marca,precio,stock,imagen, idProd))
         con.commit()
         
         cur.close() #cerrando conexion de la consulta sql
