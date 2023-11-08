@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect,url_for,jsonify,send_from_directory
+from flask import Flask, render_template, request,url_for, redirect,url_for,jsonify,send_from_directory
 from homepage_controller import *
 from flask_mail import Mail, Message
 import os
@@ -8,6 +8,7 @@ from login import *
 
 app = Flask(__name__,template_folder='template')
 application = app
+app.secret_key = '#d13m06a85'  # Necesario para flash
 
 #Configuracion del Correo Electronico
 app.config['MAIL_SERVER'] = 'smtp-mail.outlook.com'  # Servidor de correo saliente (SMTP)
@@ -165,7 +166,8 @@ def inicioAdmin():
 #RUTAS
 @app.route('/registrar-producto', methods=['GET','POST'])
 def addProducto():
-    return render_template('public/addProducto.html')
+    
+        return render_template('public/addProducto.html')
 
 
 @app.route('/ver-detalles-del-producto/<int:idProd>', methods=['GET', 'POST'])
@@ -175,7 +177,7 @@ def viewDetalleProducto(idProd):
         resultData = detallesdelProducto(idProd) #Funcion que almacena los detalles del carro
         
         if resultData:
-            return render_template('public/vistaProducto.html', infoProd = resultData, msg='Detalles del Producto', tipo=1)
+         return render_template('public/vistaProducto.html', infoProd = resultData, msg='Detalles del Producto', tipo=1)
         else:
             return render_template('public/paginaadmin.html', msg='No existe el Producto', tipo=1)
     return redirect(url_for('inicio'))
