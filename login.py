@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from conectar import *
+from crud_controller import *
 
 app = Flask(__name__)   
 
@@ -9,12 +10,11 @@ def verificaradmin(username, password):
        
         if username=='admin' and password=='1234':
           print("accedió el admin")
-
-          return True
+          resultados = listaProductos()
+          return resultados
           # return redirect(url_for('home'))
         
-        else:
-            return False
+       
 
       
 @app.route('/logout')

@@ -1,0 +1,48 @@
+<!-- {{ miData }} -->
+{% if (resultado) %}
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pro in resultado %}
+            {% with urlProd = '/static/assets/img/' %}
+            <tr id="Registro_{{ pro.id_producto }}">
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ pro.nombre }}</td>
+                <td>{{ pro.descripcion }}</td>
+                <td>{{ pro.marca }}</td>
+                <td>{{ pro.precio }}</td>
+                <td>{{ pro.stock }}</td>
+                <td>
+                    {% if(pro.imagen !="") %}
+                    <img src="{{ urlProd }}{{ pro.imagen }}" class="sin_foto_mini" alt="{{ pro.marca }}">
+                    {% else %}
+                    <img src="{{ urlProd }}imagen-vacia.jpg" class="sin_foto_mini" alt="coche">
+                    {% endif %}
+                </td>
+                <td width="300">
+                   
+                </td>
+            </tr>
+            {% endwith %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="row mb-5">
+    <div class="col-md-12">
+        <h3 class="text-center">No hay Carros</h3>
+    </div>
+</div>
+{% endif %}
