@@ -109,16 +109,5 @@ def eliminarProducto(idProd):
     cur.execute('DELETE FROM productos WHERE id_producto=%s', (idProd,))
     con.commit()
     resultado_eliminar = cur.rowcount #retorna 1 o 0
-<<<<<<< HEAD
-    #print(resultado_eliminar)
-    
-    basepath = os.path.dirname (__file__) #C:\xampp\htdocs\localhost\Crud-con-FLASK-PYTHON-y-MySQL\app
-    url_File = os.path.join (basepath, 'static/assets/img', nombre_imagen)
-    os.remove(url_File) #Borrar foto desde la carpeta
-    #os.unlink(url_File) #Otra forma de borrar archivos en una carpeta
-    
-
-=======
    
->>>>>>> d0da116323f70f9b7201111579fb3735f35b3f24
     return resultado_eliminar
