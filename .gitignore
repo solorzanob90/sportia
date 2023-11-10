@@ -1,0 +1,16 @@
+# Archivos y directorios específicos para Flask
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivo de base de datos SQLite (si lo estás utilizando)
+*.db
+
+# Carpeta de entorno virtual (si utilizas virtualenv)
+venv/
+
+# Carpeta donde se almacenan archivos de log
+logs/
+
+# Archivo de configuración local (si tienes uno)
+instance/config.py
