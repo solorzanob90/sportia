@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request,url_for, redirect,url_for,jsonify,send_from_directory
+from flask import Flask, render_template, request,flash,url_for, redirect,url_for,jsonify,send_from_directory
 from homepage_controller import *
 from flask_mail import Mail, Message
 import os
 from PIL import Image, ImageDraw, ImageFont
 from crud_controller import *
 from login import *
+from logincontroller import *
 
 app = Flask(__name__,template_folder='template')
 application = app
@@ -22,6 +23,7 @@ mail = Mail(app)
 #Aqui genero una factura en una imagen creada con Pillow
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+listaProd=listaProductos()
 
 @app.route('/verificarusuario/', methods=['POST'])
 def verificarusuario():
@@ -37,7 +39,24 @@ def verificarusuario():
     else: 
         print("Credenciales Incorrectas")
 
+@app.route('/entrarLogin/', methods = ['POST'])
+def entrarLogin():
+      if request.method=='POST':
+        username = request.form['username']
+        password = request.form['password']
+        usuario=loguear(username, password)
+        
 
+        if usuario:
+           print("Credenciales correctas")
+           flash('Inicio de sesión exitoso', 'success')
+           return render_template('public/paginaadmin.html', resultado=listaProd)
+           
+        else: 
+            print("Credenciales Incorrectas")
+            flash('Usuario o contraseña incorrectos', 'danger')
+            return render_template('public/login.html',usuario=usuario)
+        
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
