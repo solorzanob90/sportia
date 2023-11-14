@@ -1,39 +1,57 @@
 {% if(datos) %}
+<section class="flush-with-above">
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="projects" role="tabpanel" aria-labelledby="projects-tab">
+      <div class="container">
+        <ul class="row feature-list feature-list-sm">
+          {% for p in datos %}
+          {% with urlprod = '/static/assets/img/' %}
+          <li class="col-12 col-md-6 col-lg-4 my-4">
+            <div class="card pt-2 block2-pic hov-img0">
+              <a href="#">
+                <img class="card-img-top " style="object-fit: contain" src="{{ urlprod }}{{ p.imagen }}" width="100px"
+                  height="170px" alt="{{  p.nombre  }}">
+              </a>
+              <div class="card-body">
+                <a href="#">
+                  <h5 class="card-title h3 stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">{{ p.nombre }}</h5>
+                  <p class="card-text text-body">Accounting for creative people</p>
+                  <h5 class="card-title h3">${{ p.precio }}</h5>
+                </a>
+              </div>
+              <div class="card-footer card-footer-borderless d-flex justify-content-between">
+                {% if p.stock > 0 %}
+                <a href="{{url_for('verDetalles',prod_id=p.id_producto)}}" class="btn btn-primary"
+                  data-bs-toggle="modal" data-bs-target="#detallesProductoModal">Comprar</a>
+                {% else %}
+                <p class="h3 text-center text-danger"><strong>AGOTADO!</strong></p>
+                {% endif %}
 
-{% for p in datos %}
-{% with urlprod = '/static/assets/img/' %}
+                <div class="text-small">
+                  <ul class="list-inline">
+                  </ul>
+                </div>
 
-<div class="block2">
-  <div class="block2-pic hov-img0">
-    <div class="card m-r-15 m-l-15 m-t-15 m-b-15" style="width: 14rem;">
-      <img src="{{ urlprod }}{{ p.imagen }}" width="100px" height="170px" class="card-img-top" alt="{{ p.nombre }}">
-      <div class="card-body">
-        <div>
-          <div class="row">
-            <h5 class="card-title h3 stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">{{ p.nombre }}</h5>
-          </div>
-        </div>
-        <div>
-          <div class="row">
-            <h5 class="card-title h3">${{ p.precio }}</h5>
-          </div>
-        </div>
-        <!--<p class="card-text h5">{{ p.descripcion }}</p>-->
-        {% if p.stock > 0 %}
-        <a href="{{url_for('verDetalles',prod_id=p.id_producto)}}" class="btn btn-primary">Comprar</a>
-        {% else %}
-        <p class="h3 text-center text-danger"><strong>AGOTADO!</strong></p>
-        {% endif %}
+              </div>
+            </div>
+          </li>
+          <!--end of col-->
+          {% endwith %}
+          {% endfor %}
+          {% endif %}
 
 
+
+        </ul>
+        <!--end of row-->
       </div>
+      <!--end of container-->
     </div>
-  </div>
-</div>
 
-{% endwith %}
-{% endfor %}
-{% endif %}
+  </div>
+</section>
+
+
 <div class="container">
   <footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">

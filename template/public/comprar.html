@@ -1,141 +1,105 @@
 {% extends 'public/index.html' %} {% block body %} {% if (detallesProducto and
-  cantidad) %} {% set urlprod = '/static/assets/img/' %}
+cantidad) %} {% set urlprod = '/static/assets/img/' %}
 
-  <head>
-    <style>
-      .gradient-custom {
-  /* fallback for old browsers */
-  background: #e9e9e9;
-  
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, rgb(235, 235, 235), rgb(228, 228, 228));
-  
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, rgb(227, 227, 227),rgb(231, 231, 231))
-  }
+<head>
+  <style>
+    .gradient-custom {
+      /* fallback for old browsers */
+      background: #e9e9e9;
+
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: -webkit-linear-gradient(to right, rgb(235, 235, 235), rgb(228, 228, 228));
+
+      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: linear-gradient(to right, rgb(227, 227, 227), rgb(231, 231, 231))
+    }
   </style>
 
 
-  </head>
-  <section class="gradient-custom">
+</head>
+<section class="gradient-custom">
 
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-  <div class="card mb-4 container-md p-2 bg-light " style="max-width: 500px">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img
-          src="{{ urlprod }}{{ detallesProducto.imagen }}"
-          class="img-fluid rounded-start"
-          id="imga"
-          width="400px"
-          height="400px"
-        />
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h4 class="card-title">
-            <strong> {{ detallesProducto.nombre }}</strong>
-          </h4>
-          <p class="card-text">{{ detallesProducto.descripcion }}.</p>
-          <label class="h4 card-title"
-            >Precio (unidad):
-            <p class="h5">${{ detallesProducto.precio }}</p></label
-          ><br />
-          <label class="h4 card-title"
-            >Cantidad elegida:
-            <p class="h5">{{ cantidad }}</p></label
-          >
-          <br /><br /><br />
-          <h3 class="text-center">
-            TOTAL: {{ detallesProducto.precio * cantidad }}
-          </h3>
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card mb-4 container-md p-2 bg-light " style="max-width: 500px">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="{{ urlprod }}{{ detallesProducto.imagen }}" class="img-fluid rounded-start" id="imga"
+                width="400px" height="400px" />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h4 class="card-title">
+                  <strong> {{ detallesProducto.nombre }}</strong>
+                </h4>
+                <p class="card-text">{{ detallesProducto.descripcion }}.</p>
+                <label class="h4 card-title">Precio (unidad):
+                  <p class="h5">${{ detallesProducto.precio }}</p>
+                </label><br />
+                <label class="h4 card-title">Cantidad elegida:
+                  <p class="h5">{{ cantidad }}</p>
+                </label>
+                <br /><br /><br />
+                <h3 class="text-center">
+                  TOTAL: {{ detallesProducto.precio * cantidad }}
+                </h3>
+              </div>
+            </div>
+          </div>
         </div>
+        <br /><br />
+
+        <form action="{{ url_for('guardarUsuario') }}" method="POST" class="mb-4 row g-3 needs-validation">
+          <input type="number" name="total" value="{{ detallesProducto.precio * cantidad }}" hidden />
+          <input type="number" name="idprod" value="{{ detallesProducto.id_producto }}" hidden />
+          <input type="number" name="cant" value="{{ cantidad }}" hidden />
+          <input type="number" name="stockactual" value="{{ detallesProducto.stock - cantidad }}" hidden />
+
+
+          <div class="form-row">
+
+            <div class="form-group col-md-12">
+              <label class="form-label ">Cedula</label>
+              <input type="number" name="cedula" class="form-control" min="9999999" max="9999999999" required />
+            </div>
+
+            <div class="form-group col-md-6">
+              <label class="form-label">Nombre</label>
+              <input type="text" name="nombre" class="form-control" minlength="1" maxlength="50" required />
+
+            </div>
+            <div class="form-group col-md-6">
+              <label class="form-label">Apellido</label>
+              <input type="text" name="apellido" class="form-control" minlength="1" maxlength="50" required />
+            </div>
+            <div class="form-group  col-md-8">
+              <label class="form-label">Direccion</label>
+              <input type="text" name="direccion" class="form-control" pattern="^[A-Za-z0-9\s#\-]+$" required />
+
+            </div>
+            <div class="form-group col-md-4">
+              <label class="form-label">Teléfono</label>
+              <input type="tel" name="telefono" class="form-control" pattern="^\d{10}$" />
+            </div>
+            <div class="form-group col-md-12">
+              <label class="form-label">E-mail</label>
+              <input type="email" name="email" class="form-control" required />
+
+            </div>
+
+          </div>
+          <div class=" mx-auto">
+
+            <button type=" submit" class="btn btn-success ">Finalizar Compra</button>
+          </div>
+        </form>
+
+
+
       </div>
     </div>
   </div>
-  <br /><br />
-  
-
-  <div class="container-sm">
-    <form
-      action="{{ url_for('guardarUsuario') }}"
-      method="POST"
-      class="mb-4 row g-3 needs-validation"
-     
-    >
-      <input type="number" name="total" value="{{ detallesProducto.precio * cantidad }}" hidden />
-      <input type="number" name="idprod" value="{{ detallesProducto.id_producto }}" hidden />
-      <input type="number" name="cant" value="{{ cantidad }}" hidden />
-      <input type="number" name="stockactual" value="{{ detallesProducto.stock - cantidad }}" hidden />
-      
-      <div class="form-floating mb-3 col-md-12">
-        <input type="number" name="cedula" class="form-control" min="9999999" max="9999999999" required/>
-        <label class="form-label ">Cedula</label>
-      </div>
-      <div class="form-floating mb-3 col-md-5">
-        
-        <input type="text" name="nombre" class="form-control" minlength="1" maxlength="50" required/>
-        <label class="form-label">Nombre</label>
-      </div>
-  
-      <div class="form-floating mb-3 col-md-5">
-        
-        <input
-          type="text"
-          name="apellido"
-          class="form-control"
-          minlength="1" maxlength="50"
-          required
-         
-        />
-        <label class="form-label">Apellido</label>
-      </div>
-  
-      <div class="form-floating mb-3 col-md-5">
-        
-        <input
-          type="tel"
-          name="telefono"
-          class="form-control"
-          pattern="^\d{10}$"
-        />
-        <label class="form-label">Teléfono</label>
-  
-      </div>
-      <div class="form-floating mb-3 col-md-5">
-        
-        <input
-          type="text"
-          name="direccion"
-          class="form-control"
-          pattern="^[A-Za-z0-9\s#\-]+$"   
-          required
-        />
-        <label class="form-label">Direccion</label>
-      </div>
-
-      <div class="form-floating mb-3 col-md-8 ">
-        
-        <input type="email" name="email" class="form-control" required/>
-        <label class="form-label">E-mail</label>
-      </div class="align-self-center ">
-      
-   <!--   <div class="form-floating mb-3 col-md-8 ">
-        
-        <input type="email" name="email" class="form-control" required/>
-        <label class="form-label">E-mail</label>
-      </div class="align-self-center ">-->
-
-
-      <button type="submit" class="btn btn-success col-md-7 ">Finalizar Compra</button>
-    </form>
-  </div>
-</div>
-</div>
-</div>
 
 </section>
-  {% endif %} {% endblock %}
-  
+{% endif %} {% endblock %}

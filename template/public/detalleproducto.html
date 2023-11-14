@@ -1,15 +1,57 @@
 {% extends 'public/index.html' %} {% block body %} {% if (detallesProducto) %}
 {% set urlprod = '/static/assets/img/' %}
+<!-- Botón para abrir el modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="detallesProductoModal" tabindex="-1" aria-labelledby="detallesProductoModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detallesProductoModalLabel">{{ detallesProducto.nombre }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Contenido del modal (tu código existente) -->
+        <div class="card mb-5 container-md p-3" style="max-width: 900px">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="{{ urlprod }}{{ detallesProducto.imagen }}" class="img-fluid rounded-start" id="imga"
+                width="400px" height="400px" />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <p class="card-text">{{ detallesProducto.descripcion }}.</p>
+                <p class="card-title h3">${{ detallesProducto.precio }}</p>
+
+                <form action="{{url_for('mostrarFrmCompra', prod_id=detallesProducto.id_producto)}}" method="post">
+                  <label for="cantidad" class="form-label">
+                    Cantidad <input type="number" name="cantidad" id="cantidad" class="form-control" value="1" min="1"
+                      max="{{ detallesProducto.stock }}" /> de {{ detallesProducto.stock }} en stock
+                  </label>
+
+                  <br />
+                  <br />
+                  <br />
+                  <button type="submit" class="btn btn-primary">Comprar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fin del contenido del modal -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  prueba hasta aqui-->
+
 <div class="card mb-5 container-md p-3" style="max-width: 900px">
   <div class="row g-0">
     <div class="col-md-4">
-      <img
-        src="{{ urlprod }}{{ detallesProducto.imagen }}"
-        class="img-fluid rounded-start"
-        id="imga"
-        width="400px"
-        height="400px"
-      />
+      <img src="{{ urlprod }}{{ detallesProducto.imagen }}" class="img-fluid rounded-start" id="imga" width="400px"
+        height="400px" />
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -19,12 +61,13 @@
         <p class="card-text">{{ detallesProducto.descripcion }}.</p>
         <p class="card-title h3">${{ detallesProducto.precio }}</p>
 
-        <form action="{{url_for('mostrarFrmCompra', prod_id=detallesProducto.id_producto)}}", method="post">
-        
-          <label class="form-label">Cantidad <input type="number" name="cantidad" class="form-control" value="1" min="1" max="{{ detallesProducto.stock }}"/> de {{ detallesProducto.stock }} en stock  </label>
-            
-            
-            <br /><br /><br />
+        <form action="{{url_for('mostrarFrmCompra', prod_id=detallesProducto.id_producto)}}" , method="post">
+
+          <label class="form-label">Cantidad <input type="number" name="cantidad" class="form-control" value="1" min="1"
+              max="{{ detallesProducto.stock }}" /> de {{ detallesProducto.stock }} en stock </label>
+
+
+          <br /><br /><br />
           <button type="submit" class="btn btn-primary">Comprar</button>
         </form>
       </div>

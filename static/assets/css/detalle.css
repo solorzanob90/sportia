@@ -1,80 +1,91 @@
-body{
+body {
     margin: 0px;
 }
 
-#encabDetal{
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+#encabDetal {
     width: 100%;
     height: 150px;
     margin: 0px;
     display: flex;
     justify-content: center;
-    background-color:	#0d0d0d;
+    background-color: #0d0d0d;
     box-shadow: inset #404040 0px 0px 3px 3px;
 }
-h3{
+
+h3 {
     text-align: center;
     font-size: 35px;
     font-family: 'GoMediumRegular';
     font-weight: normal;
     font-style: normal;
-    color:#f2f2f2;
-   }
+    color: #f2f2f2;
+}
 
-   form{
+form {
     display: inline-flex;
     margin-top: 60px;
     margin-left: 60px;
     margin-right: 20px;
-   }
+}
 
-   #detallesCompra {
+#detallesCompra {
     width: 500px;
     margin: 50px;
     flex-direction: row;
-   }
+}
 
-   #submit{
+#submit {
     position: absolute;
     top: 550px;
     left: 550px;
     background-color: #046070;
     color: #f2f2f2;
-   }
+}
 
-  form>fieldset>div>p{
+form>fieldset>div>p {
     height: 23px;
     border-radius: 5px;
     border-color: #046070;
-   }
+}
 
-   form>fieldset>div>p>#nomCliente{
+form>fieldset>div>p>#nomCliente {
     margin-right: 30px;
     margin-left: 50px;
-   }
-   form>fieldset>div>p>#apeCliente{
+}
+
+form>fieldset>div>p>#apeCliente {
     margin-right: 30px;
     margin-left: 40px;
-   }
-   form>fieldset>div>p>#identificación{
+}
+
+form>fieldset>div>p>#identificación {
     margin-right: 30px;
     margin-left: 93px;
-   }
-   form>fieldset>div>p>#teléfono{
+}
+
+form>fieldset>div>p>#teléfono {
     margin-right: 30px;
     margin-left: 140px;
-   }
-   form>fieldset>div>p>#dir{
+}
+
+form>fieldset>div>p>#dir {
     margin-right: 30px;
     margin-left: 135px;
-   }
-   form>fieldset>div>p>#email{
+}
+
+form>fieldset>div>p>#email {
     margin-right: 30px;
     margin-left: 42px;
-   }
-   
+}
 
-   #datClient{
+
+#datClient {
     width: 600px;
-   }
-
-   
+}
